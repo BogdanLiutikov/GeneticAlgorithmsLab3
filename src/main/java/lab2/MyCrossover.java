@@ -12,12 +12,21 @@ public class MyCrossover extends AbstractCrossover<double[]> {
     }
 
     protected List<double[]> mate(double[] p1, double[] p2, int i, Random random) {
-        ArrayList children = new ArrayList();
+        ArrayList<double[]> children = new ArrayList<double[]>();
 
         // your implementation:
+        int dim = p1.length;
+        double[] c1 = p1.clone();
+        double[] c3 = p2.clone();
+        double alpha = 0.05;
+        int index = random.nextInt(dim);
+        for (int j = index; j < dim; j++) {
+            c1[j] = (1 - alpha) * p1[j] + alpha * p2[j];
+            c3[j] = alpha * p1[j] + (1 - alpha) * p2[j];
+        }
 
-//        children.add(p1);
-//        children.add(p2);
+        children.add(c1);
+        children.add(c3);
         return children;
     }
 }
